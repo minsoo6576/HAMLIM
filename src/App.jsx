@@ -12,7 +12,7 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/main" element={<MainPage />} />
       <Route path="/posts/:id" element={<PostDetail />} />
-      <Route path="/posts/:id" element={<Edit />} />
+      <Route path="/posts/:id/edit" element={<Edit />} />
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );

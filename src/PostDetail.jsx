@@ -1,8 +1,9 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button, Card } from "antd";
+import { useState, useEffect } from "react";
 
-const posts = [
+const defaultPosts = [
   {
     key: "1",
     title: "Post 1",
@@ -110,11 +111,21 @@ const posts = [
   },
 ];
 
-const PostDetail = () => {
+export default function PostDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const post = posts.find((post) => post.key === id);
+  const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    const stored = sessionStorage.getItem("posts");
+    if (stored) {
+      setPosts(JSON.parse(stored));
+    } else {
+      setPosts(defaultPosts);
+      sessionStorage.setItem("posts", JSON.stringify(defaultPosts));
+    }
+  }, []);
+  const post = posts.find((p) => p.key === id);
   if (!post) {
     return <div>Post not found</div>;
   }
@@ -138,5 +149,4 @@ const PostDetail = () => {
       </Button>
     </Card>
   );
-};
-export default PostDetail;
+}

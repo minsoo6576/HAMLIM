@@ -7,6 +7,8 @@ function LoginPage() {
 
   const onFinish = (values) => {
     console.log("Success:", values);
+    sessionStorage.setItem("username", values.username);
+    sessionStorage.setItem("password", values.password);
     navigate("/main");
   };
   const onFinishFailed = (errorInfo) => {
