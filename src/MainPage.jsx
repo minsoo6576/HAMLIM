@@ -140,7 +140,7 @@ export default function MainPage() {
     setSelectedKey(key);
     setIsModalOpen(true);
   };
-  //모달의 삭제,취소 버튼을 눌렀을 경우, 삭제 기능은 구현되어 있지 않고 모달이 닫히게만
+  
   const handleOk = () => {
     const updated = posts.filter((post) => post.key !== selectedKey);
     setPosts(updated);
